@@ -1,10 +1,10 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.11-SNAPSHOT'
+	id 'org.springframework.boot' version '3.5.12-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com.korit12'
+group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 description = 'Demo project for Spring Boot'
 
@@ -24,15 +24,8 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-
-	// H2 인메모리 데이터베이스 추가
-	//	runtimeOnly 'com.h2database:h2'
-	//
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	// Source: https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.5.7")
 }
 
