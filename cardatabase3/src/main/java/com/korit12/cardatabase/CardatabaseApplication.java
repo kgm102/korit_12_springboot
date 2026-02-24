@@ -1,9 +1,6 @@
 package com.korit12.cardatabase;
 
-import com.korit12.cardatabase.domain.Car;
-import com.korit12.cardatabase.domain.CarRepository;
-import com.korit12.cardatabase.domain.Owner;
-import com.korit12.cardatabase.domain.OwnerRepository;
+import com.korit12.cardatabase.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +11,7 @@ import org.slf4j.Logger;
 import java.util.Arrays;
 
 @SpringBootApplication
-@RequiredArgsConstructor
+
 public class CardatabaseApplication implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(CardatabaseApplication.class);
 
@@ -25,7 +22,13 @@ public class CardatabaseApplication implements CommandLineRunner {
 
 	private final CarRepository carRepository;
 	private final OwnerRepository ownerRepository;
+	private final AppUserRepository appUserRepository;
 
+	public CardatabaseApplication(CarRepository carRepository, OwnerRepository ownerRepository, AppUserRepository appUserRepository) {
+		this.carRepository = carRepository;
+		this.ownerRepository = ownerRepository;
+		this.appUserRepository = appUserRepository;
+	}
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -37,5 +40,8 @@ public class CardatabaseApplication implements CommandLineRunner {
 		carRepository.save(new Car("현대", "소나타", "검정", "123가4567", 2026, 30000000, owner1));
 		carRepository.save(new Car("기아", "K9", "흰색", "987나5432", 2025, 20000000, owner2));
 		carRepository.save(new Car("람보르기니", "쿤타치", "빨강", "159다7532", 2010, 130000000, owner2));
+
+		appUserRepository.save(new AppUser("user", "$2a$12$T0LCeRQ9tABPO.xi5XDMsekVpkwjx06iogCJvENxEosh2wjhGlbDS", "User"));
+		appUserRepository.save(new AppUser("admin", "$2a$12$7fxsEn.3tS35LWlhzAPzn.lE3l1MquXo6C3.X5NlTF/kLWrSNkwJW", "ADMIN"));
 	}
 }
